@@ -22,15 +22,18 @@ export function createFlight(savedTime=0,saved){
   let orientation=restore?flightUnit(saved.orientation):savedTime>0?flightHeading(oldRoute.forward):[0,0,0,1];
   let distance=0;
   let rate=[0,0,0],cruiseAge=0,blocked=false;
+  let steering=null;
+  function steer(yaw,pitch){steering=[Math.max(-1,Math.min(1,pitch)),Math.max(-1,Math.min(1,-yaw)),0];}
+  function release(){steering=null;rate=[0,0,0];}
   function step(dt,obstacles=[]){
     // Bounded integration also keeps collision checks reliable after a long review step.
     let remaining=dt;blocked=false;
     while(remaining>1e-8){
       const h=Math.min(remaining,1/30);remaining-=h;cruiseAge+=h;
-      const controls=[.0012*Math.cos(cruiseAge*.024),.0035*Math.cos(cruiseAge*.035),0];
+      const controls=steering?steering.map(v=>v*.8):[.0012*Math.cos(cruiseAge*.024),.0035*Math.cos(cruiseAge*.035),0];
       // Start a gentle detour well before a solid body reaches the ship.
       const inverse=[-orientation[0],-orientation[1],-orientation[2],orientation[3]];
-      for(const body of obstacles){
+      for(const body of steering?[]:obstacles){
         const local=flightRotate(inverse,body.position.map((v,i)=>v-position[i]));
         const ahead=-local[2],lateral=Math.hypot(local[0],local[1]),clearance=body.radius+35;
         if(ahead>0&&ahead<clearance+180&&lateral<clearance){
@@ -52,7 +55,7 @@ export function createFlight(savedTime=0,saved){
       distance+=Math.hypot(...next.map((v,i)=>v-position[i]));position=next;
     }
   }
-  return {step,
+  return {step,steer,release,
     get throttle(){return 1;},get mode(){return 'cruise';},
     get position(){return [...position];},get orientation(){return [...orientation];},
     get forward(){return flightRotate(orientation,[0,0,-1]);},get speed(){return FLIGHT_SPEED;},get distance(){return distance;},get blocked(){return blocked;},

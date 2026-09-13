@@ -6,3 +6,5 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
 .status{pointer-events:none}.started .status{top:auto;bottom:88px}
 @media(max-width:700px){.controls{gap:3px;padding:7px}.icon-button{width:34px}.controls .divider{margin:0 2px}#volume{width:58px}}
+
+.started:not(.paused) #space{cursor:grab}.started:not(.paused) #space.steering{cursor:grabbing}

@@ -5,8 +5,8 @@ Use `?seed=123&review=1` for a test session that never saves progress.
 1. Confirm the rocket and universe render before Begin without sound or animation.
 2. Begin; the welcome text disappears and only the small playback toolbar remains. Reduced motion starts paused; explicit Play resumes it.
 3. Confirm there is no flight panel, speed slider, steering pad, instructional overlay, or manual camera switch on desktop or mobile.
-4. Press WASD, arrows, Q/E, P/C, Shift/X and drag the canvas. They must not change flight mode or speed. Diagnostics must remain `mode: cruise`, `throttle: 1`, `speed: 5.5`.
-5. Pause and resume; both simulation time and audio must stop and resume. Check mute and volume persistence.
+4. Press WASD, arrows, Q/E, P/C, Shift/X. They must not change flight mode or speed. Diagnostics must remain `mode: cruise`, `throttle: 1`, `speed: 5.5`.
+5. Click and drag on the canvas to turn, climb, dive, and turn back. Release, cancel, pause, blur, and open About: steering must stop without changing the 1x pace. Check touch dragging and steering with controls hidden. Pause and resume; both simulation time and audio must stop and resume. Check mute and volume persistence.
 6. Hide controls with H; restore with H or Escape. Confirm keyboard focus remains usable, controls dim on idle, and About/fullscreen work.
 7. Hide the tab; rendering and audio suspend. Return; an explicitly paused journey remains paused.
 8. Load an old saved session with manual mode and throttle 0 or 3. Position and heading should restore, with autopilot at 1×.

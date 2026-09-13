@@ -4,6 +4,20 @@ import {nearbyObjects,sectorObject,WORLD_VISIBLE_LIMIT,solidBounds} from '../src
 
 const original=createFlight();
 const saved=original.snapshot();assert.ok(validFlightSave(saved));
+const turned=createFlight();turned.steer(1,0);turned.step(4.1);
+assert.ok(turned.forward[2]>.99,'Dragging must allow a full turn back through the world');
+turned.release();const turnPosition=turned.position;turned.step(2);
+assert.ok(turned.position[2]>turnPosition[2]+10,'Release must continue along the new heading');
+assert.equal(turned.speed,5.5);assert.equal(turned.throttle,1);
+const climb=createFlight();climb.steer(0,1);climb.step(2.1);
+assert.ok(climb.forward[1]>.99,'Dragging upward must climb');
+climb.step(4);assert.ok(climb.forward[1]<-.98,'Pitch must allow a complete loop');
+climb.release();const resumed=createFlight(0,climb.snapshot());
+assert.deepEqual(resumed.position,climb.position);assert.deepEqual(resumed.orientation,climb.orientation);
+const drag60=createFlight(),drag30=createFlight();drag60.steer(.6,.3);drag30.steer(.6,.3);
+for(let i=0;i<600;i++)drag60.step(1/60);
+for(let i=0;i<300;i++)drag30.step(1/30);
+assert.ok(Math.hypot(...drag60.position.map((v,i)=>v-drag30.position[i]))<.15);
 for(const throttle of [0,.5,3]){
   const restored=createFlight(0,{...saved,mode:'manual',throttle});
   assert.deepEqual(restored.position,original.position);

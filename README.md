@@ -17,6 +17,7 @@ This version uses Three.js's WebGL renderer and GLSL shaders. The original uses 
 ## Experience
 
 - Press **Begin your journey** and settle in. The rocket always cruises on autopilot at a steady **1×** pace through a persistent 3D universe.
+- Click and drag on the scene to steer in any direction, including back toward worlds you have passed. Drag farther and hold to keep turning; release to keep drifting. Touch dragging works too. No mode switch or speed controls.
 - The universe contains 44 celestial encounter types, with seeded worlds in every direction.
 - The rocket makes gentle turns and automatic detours around solid bodies. Camera angles change slowly every few minutes.
 - A beatless study soundtrack blends slow chords with sparse felt-key notes. Full volume has approximately 24 dB more gain than the original quiet mix, with a compressor controlling peaks. New sessions default to a gentle 28% volume; existing choices remain saved.
