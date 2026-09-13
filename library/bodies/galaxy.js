@@ -2,7 +2,7 @@ import {seeded} from '../../src/noise.js';
 import {makeHalo,makeBodyResult} from './materials.js';
 
 export function buildGalaxy(THREE,noise,d){
-  const group=new THREE.Group(),random=seeded(d.seed),count=d.kind===3?1700:6500;
+  const group=new THREE.Group(),random=seeded(d.seed),count=d.particles??(d.kind===3?1700:6500);
   const positions=new Float32Array(count*3),colors=new Float32Array(count*3),sizes=new Float32Array(count);
   const tint=new THREE.Color(d.color);
   for(let i=0;i<count;i++){

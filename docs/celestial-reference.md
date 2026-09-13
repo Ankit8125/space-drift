@@ -1,14 +1,16 @@
 # Celestial encounters and visual interpretation
 
-The first route has 44 entries, lasting 44 × 85 seconds (62 minutes 20 seconds). It then continues with deterministic shuffled cycles and fresh placements. The catalogue is organized by observed object classes and systems; it is not an exhaustive taxonomy of everything discovered, nor a map of actual neighboring objects.
+The catalogue has 48 observed object and system types. Each spatial block of 4 by 4 by 3 sectors contains the full catalogue once in a deterministic shuffled arrangement. The same rule applies in every direction. Sector positions have small random offsets, so the world is balanced without looking like a perfectly aligned grid. This is not an exhaustive taxonomy or a map of actual neighboring objects.
 
-## Route coverage
+## Catalogue coverage
 
 - Planetary and small-body encounters: ocean world, cratered moon, ringed gas giant, rocky terrestrial planet, cloud-covered planet, asteroid belt, comet, ice giant, dwarf planet, icy moon, rogue planet, super-Earth, lava exoplanet, hot Jupiter, sub-Neptune.
 - Stellar and substellar encounters: the Sun, brown dwarf, red dwarf, binary system, blue main-sequence star, red giant, blue supergiant, carbon star, Wolf–Rayet star, protostar.
 - Remnants and active nuclei: white dwarf, neutron star, pulsar, magnetar, accreting stellar-mass black hole, quasar, accreting supermassive black hole.
 - Interstellar regions: emission nebula, reflection nebula, dark molecular cloud, planetary nebula, supernova remnant.
 - Stellar systems: open cluster, globular cluster, spiral, barred spiral, elliptical, irregular, and lenticular galaxies.
+
+- New systems: protoplanetary disk, Herbig-Haro jets with bow shocks, interacting galaxies with tidal tails, and galaxy clusters.
 
 ## Research references
 
@@ -25,3 +27,10 @@ The renderer is procedural and uses no telescope photographs or measured surface
 The black-hole image is an analytic visual approximation of a lensed accretion disk, not geodesic ray tracing. Only accreting black-hole examples are shown. Radiation beams, magnetospheric arcs, and nebular colors are visual interpretations of emissions that are often not directly visible to human eyes. Rotations and emission changes are slowed for comfortable viewing; no rapid pulsar flashing is used.
 
 Ambient sound represents a fictional cabin soundtrack, not sound propagating through a vacuum. No hypothetical white holes, wormholes, dark-matter stars, or unconfirmed exotic-star classes are presented as discovered objects.
+
+## New observed systems
+
+- [NASA/Hubble: Planetary construction zones](https://science.nasa.gov/mission/hubble/science/science-highlights/finding-planetary-construction-zones/) - resolved disks around young stars. The procedural model shows layered dust, gaps, and a warm central star; it is not a measured disk map.
+- [NASA/Webb: Herbig-Haro 211](https://www.nasa.gov/universe/nasas-webb-snaps-supersonic-outflow-of-young-star/) - narrow bipolar jets and bow shocks. The model uses three-dimensional shock shells, gas particles, and a dusty source disk. Emission colors are illustrative; no rapid flares are used.
+- [NASA/Hubble: Tidal tails](https://science.nasa.gov/missions/hubble/nasas-hubble-traces-string-of-pearls-star-clusters-in-galaxy-collisions/) - interacting galaxies with stellar streams. The scene is a composed snapshot rather than an orbital simulation.
+- [NASA/Hubble: Galaxy clusters](https://science.nasa.gov/missions/hubble/hubble-magnifying-the-distant-universe/) - galaxy collections and lensing observations. The model contains a central elliptical galaxy, 13 satellites, and faint intracluster starlight. It does not simulate gravitational lensing or depict dark matter as glowing material.

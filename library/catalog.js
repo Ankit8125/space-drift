@@ -60,4 +60,8 @@ export const encounters = [
   {id:'elliptical-galaxy',name:'Elliptical galaxy',chapter:'Beyond the Milky Way',family:'galaxy',kind:2,color:'#d6bb8f',radius:105},
   {id:'quasar',name:'Quasar · active galactic nucleus',chapter:'The distant universe',family:'blackhole',color:'#b7d4ff',radius:32,jets:true},
   {id:'supermassive-black-hole',name:'Supermassive black hole',chapter:'The distant universe',family:'blackhole',color:'#ffc182',radius:42},
+  {id:'protoplanetary-disk',name:'Protoplanetary disk',chapter:'Worlds taking shape',family:'nursery',kind:0,color:'#d9a175',radius:85},
+  {id:'herbig-haro',name:'Herbig–Haro stellar jets',chapter:'The first starlight',family:'nursery',kind:1,color:'#e9a082',radius:95},
+  {id:'interacting-galaxies',name:'Interacting galaxies · tidal tails',chapter:'A slow cosmic dance',family:'assembly',kind:0,color:'#b3c8e6',radius:120},
+  {id:'galaxy-cluster',name:'Galaxy cluster',chapter:'Gatherings of galaxies',family:'assembly',kind:1,color:'#ddc9ad',radius:135},
 ];

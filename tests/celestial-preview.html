@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Celestial rendering review</title>
+<style>body{margin:0;background:#070e1c;color:#d8e1ed;font:14px system-ui}main{display:grid;grid-template-columns:1fr 1fr}figure{margin:0;position:relative;border:1px solid #ffffff14}canvas{display:block;width:100%;height:44vh}figcaption{padding:10px 20px}button{position:fixed;right:20px;bottom:8px;z-index:2;padding:10px}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js"}}</script></head>
+<body><main></main><button id="view">View from the other side</button><script type="module">
+import * as THREE from 'three';
+import {encounters} from '../library/catalog.js';
+import {bodies} from '../library/index.js';
+import {noise} from '../src/noise.js';
+const reviews=[];let reverse=false;
+for(const d of encounters.filter(d=>['nursery','assembly'].includes(d.family))){
+  const figure=document.createElement('figure'),canvas=document.createElement('canvas'),label=document.createElement('figcaption');
+  label.textContent=d.name;figure.append(canvas,label);document.querySelector('main').append(figure);
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setClearColor(0x070e1c);renderer.outputColorSpace=THREE.SRGBColorSpace;
+  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(42,1,.1,2000);
+  const body=bodies[d.family](THREE,noise,{...d,seed:123});scene.add(body.group);
+  const item={id:d.id,renderer,scene,camera,body,radius:d.radius};reviews.push(item);
+}
+function render(){for(const {renderer,scene,camera,body,radius} of reviews){
+  const canvas=renderer.domElement;renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
+  camera.aspect=canvas.clientWidth/canvas.clientHeight;camera.position.set(reverse?radius*.6:0,radius*.35,(reverse?-1:1)*radius*3.7);camera.lookAt(0,0,0);camera.updateProjectionMatrix();
+  scene.updateMatrixWorld(true);body.group.traverse(o=>{if(o.userData.billboard){const q=new THREE.Quaternion();o.parent.getWorldQuaternion(q).invert();o.quaternion.copy(q).multiply(camera.quaternion);}});
+  body.update(0);renderer.render(scene,camera);
+}}
+document.querySelector('button').onclick=()=>{reverse=!reverse;render();};window.addEventListener('resize',render);render();
+window.__celestialReview={stats:()=>reviews.map(({id,renderer})=>({id,calls:renderer.info.render.calls,geometries:renderer.info.memory.geometries})),dispose:()=>{for(const {body,renderer,scene,camera} of reviews){scene.remove(body.group);body.dispose();renderer.render(scene,camera);}return reviews.map(({renderer})=>renderer.info.memory.geometries);}};
+</script></body></html>

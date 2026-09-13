@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {createFlight,validFlightSave} from '../src/flight.js';
 import {nearbyObjects,sectorObject,WORLD_VISIBLE_LIMIT,solidBounds} from '../src/universe.js';
+import {encounters} from '../library/catalog.js';
 
 const original=createFlight();
 const saved=original.snapshot();assert.ok(validFlightSave(saved));
@@ -51,7 +52,18 @@ for(const point of [[0,0,0],[2000,3000,5000],[-2000,-3000,-5000],[1e8,-1e8,1e8]]
   assert.ok(objects.every(d=>d.distance<1000));
 }
 const launch=sectorObject(0,0,0,123);assert.equal(launch.id,'ocean-world');
+const openingIds=[];
+for(let x=0;x<4;x++)for(let y=0;y<4;y++)for(let z=0;z<3;z++)openingIds.push(sectorObject(x,y,z,123).id);
+assert.equal(new Set(openingIds).size,encounters.length,'The familiar opening world must not displace a catalogue type');
+// Each region in all eight octants gets the entire catalogue, including new systems.
+for(const seed of [0,123,4294967295])for(const sx of [-1,1])for(const sy of [-1,1])for(const sz of [-1,1]){
+  const ids=[];
+  for(let x=0;x<4;x++)for(let y=0;y<4;y++)for(let z=0;z<3;z++)ids.push(sectorObject(sx*12+x,sy*12+y,sz*9+z,seed).id);
+  assert.equal(ids.length,encounters.length);assert.equal(new Set(ids).size,encounters.length,'Every spatial block must contain all celestial types equally');
+}
 assert.deepEqual(launch.position,[launch.x,launch.y,launch.worldZ]);
 assert.notDeepEqual(sectorObject(1,0,0,123),sectorObject(-1,0,0,123));
 assert.equal(solidBounds(launch,0).length,2,'Moon surfaces also need a boundary');
+const nursery=encounters.find(e=>e.id==='protoplanetary-disk');
+assert.equal(solidBounds({...nursery,position:[0,0,0]},0)[0].radius,nursery.radius*.065,'Only the central star is solid, not the entire dust disk');
 console.log('Autopilot checks passed: fixed 1x, old save migration, pause, frame rate, long cruise, automatic detours, and spatial streaming.');

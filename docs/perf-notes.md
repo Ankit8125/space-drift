@@ -2,7 +2,7 @@
 
 ## Automatic 3D journey
 
-The current engine loads by spatial distance rather than forward route time. It queries deterministic sectors around the ship, selects the closest 10 groups, and caps incoming/outgoing groups at 20 during fades. The query runs at most every 0.45 simulation seconds unless travel exceeds 30 units. Loaded bodies keep fixed world coordinates; all GPU transforms subtract the ship position. Local star particles wrap on all three axes.
+The current engine loads by spatial distance rather than forward route time. It queries deterministic sectors with a balanced catalogue in every direction around the ship, selects the closest 10 groups, and caps incoming/outgoing groups at 20 during fades. The query runs at most every 0.45 simulation seconds unless travel exceeds 30 units. Loaded bodies keep fixed world coordinates; all GPU transforms subtract the ship position. Local star particles wrap on all three axes.
 
 Autopilot uses normalized quaternions with bounded integration steps, a fixed 1× cruise speed, and gentle lookahead detours around solid bodies. Old manual-flight saves preserve position and heading but always resume at 1× on autopilot. Solid primary bodies, moons, and binary companions have surface boundaries; rings and diffuse clouds remain traversable. The chase camera shortens its boom before a solid surface. The engine exposes mode, position, orientation, speed, and object coordinates through read-only diagnostics.
 
@@ -25,3 +25,5 @@ The animation loop targets at most 30 rendered frames per second. The drawing bu
 The initial view renders once. Pause and hidden tabs stop the animation loop and suspend audio. Camera smoothing, star travel, and material animation use the same simulation clock.
 
 These are code-level limits, not measured frame-time or battery-life claims. Use `window.__drift.state` in browser developer tools to inspect current draw calls, geometry count, star count, and playback state when profiling.
+
+New systems use bounded particle counts: up to 2,000 disk grains, 1,800 jet particles, 9,600 stars across a galaxy pair and tails, or 7,450 stars in a 14-member galaxy cluster. Galaxy assemblies share the existing builder with lower member counts. All geometries and materials are released with their encounter group. The sector catalogue cache is capped at 96 block permutations.

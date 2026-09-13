@@ -10,7 +10,7 @@ for(const seed of [0,123,4294967295]){
     for(let i=0;i<encounters.length;i++){
       const index=cycle*encounters.length+i,e=encounterAt(index,seed);
       seen.add(e.id);assert.deepEqual(e,encounterAt(index,seed),'Reload must reproduce a given encounter');
-      if(!['galaxy','cloud','field'].includes(e.family))assert.ok(Math.abs(e.x)-14>e.radius+5,'The whole curved flight corridor must clear each compact or solid primary body');
+      if(!['galaxy','cloud','field','nursery','assembly'].includes(e.family))assert.ok(Math.abs(e.x)-14>e.radius+5,'The whole curved flight corridor must clear each compact or solid primary body');
       assert.ok(encounterAt(index+1,seed).worldZ<e.worldZ,'All encounters lie forward along the route');
     }
     assert.equal(seen.size,encounters.length,'Every complete cycle must contain the full catalogue');

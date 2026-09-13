@@ -29,7 +29,7 @@ export function encounterAt(index,seed){
   const rng=seeded((seed^Math.imul(index+1,1597334677))>>>0);
   const type=encounters[order[offset]];
   const side=index===0?1:(rng()>.5?1:-1);
-  const diffuse=['galaxy','cloud','field'].includes(type.family);
+  const diffuse=['galaxy','cloud','field','nursery','assembly'].includes(type.family);
   return {...type,index,seed:Math.floor(rng()*4294967295),x:side*(diffuse?type.radius*.45+25:type.radius*1.65+20),y:(index===0?.35:(rng()-.35)*.9)*type.radius,worldZ:-(index*LEG_DISTANCE+185)};
 }
 

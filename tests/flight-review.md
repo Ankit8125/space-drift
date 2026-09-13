@@ -16,3 +16,9 @@ Use `?seed=123&review=1` for a test session that never saves progress.
 Review-mode `window.__drift.advance(seconds)` can step a paused scene up to 600 seconds. This is a rendering smoke-test aid, not a real-time collision or performance benchmark. Normal URLs do not expose it.
 
 Listen for long quiet chord fades and sparse soft notes. Pause freezes the audio clock. Muting or zero volume should silence all layers.
+
+## Celestial additions
+
+Open `tests/celestial-preview.html` on the source server. Inspect all four new systems from both sides. Check disk gaps and thickness, bipolar shock shells, tidal streams, and the separate galaxies in the cluster. There should be no shader errors or rapid flashes. `__celestialReview.dispose()` should return four zero geometry counts.
+
+The production bundle at `?seed=7&review=1` can be advanced 40 seconds while paused to inspect the interacting galaxies in the actual journey. The unit checks cover catalogue balance in all octants and preservation of the opening world.

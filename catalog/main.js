@@ -6,6 +6,7 @@ import {noise} from '../src/noise.js';
 const grid=document.querySelector('#catalog');
 const count=document.querySelector('#visible-count');
 const cards=[];
+count.textContent=encounters.length;
 
 const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,preserveDrawingBuffer:true});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -18,7 +19,7 @@ const light=new THREE.DirectionalLight(0xffffff,2.2);light.position.set(-4,5,8);
 const camera=new THREE.PerspectiveCamera(34,320/256,.1,1000);camera.position.set(0,0,260);
 
 function familyLabel(family){
-  return {planet:'Planet',star:'Star',compact:'Stellar remnant',cloud:'Nebula',galaxy:'Galaxy',blackhole:'Black hole',field:'Small body'}[family]||family;
+  return {planet:'Planet',star:'Star',compact:'Stellar remnant',cloud:'Nebula',galaxy:'Galaxy',blackhole:'Black hole',field:'Small body',nursery:'Stellar nursery',assembly:'Galactic system'}[family]||family;
 }
 
 for(const definition of encounters){

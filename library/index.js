@@ -6,6 +6,7 @@ import {buildBlackHole} from './bodies/black-hole.js';
 import {buildNebula} from './bodies/nebula.js';
 import {buildGalaxy} from './bodies/galaxy.js';
 import {buildSmallBodies} from './bodies/small-bodies.js';
+import {buildNursery,buildGalaxyAssembly} from './bodies/cosmic-systems.js';
 
 export const vehicles = {rocket: buildRocket};
-export const bodies = {planet:buildPlanet,star:buildStar,compact:buildStar,blackhole:buildBlackHole,cloud:buildNebula,galaxy:buildGalaxy,field:buildSmallBodies};
+export const bodies = {planet:buildPlanet,star:buildStar,compact:buildStar,blackhole:buildBlackHole,cloud:buildNebula,galaxy:buildGalaxy,field:buildSmallBodies,nursery:buildNursery,assembly:buildGalaxyAssembly};
