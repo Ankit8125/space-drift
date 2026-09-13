@@ -2,7 +2,7 @@
 
 A small rocket traveling through an endless procedural starscape. A quiet companion for focus, reading, or taking a break.
 
-Website: [Space Drift](https://space-drift-focus.vercel.app/) · Source: [Ankit8125/space-drift](https://github.com/Ankit8125/space-drift)
+Website: [Space Drift](https://ankit8125.github.io/space-drift/) · Source: [Ankit8125/space-drift](https://github.com/Ankit8125/space-drift)
 
 ## Run
 

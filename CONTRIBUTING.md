@@ -35,4 +35,6 @@ Run syntax checks and the build, then follow [the browser review](tests/flight-r
 
 Upload the contents of `dist/` to a static host when ready. The validation workflow checks and builds the site but does not publish it.
 
-For Vercel, `vercel.json` supplies the static build settings. After signing in, link the project with `vercel link`, then use `vercel --prod` to publish. Build-time `SITE_URL` overrides the canonical origin; otherwise Vercel's production project URL is used, falling back to `https://space-drift-focus.vercel.app`. This keeps the canonical tags, sharing metadata, robots.txt, and sitemap consistent. Keep `.vercel/` and local credentials out of Git.
+GitHub Pages is the primary host at `https://ankit8125.github.io/space-drift/`. The Pages workflow checks, builds, and publishes `dist/` after pushes to `main`. Enable GitHub Actions as the Pages source in repository settings.
+
+Build-time `SITE_URL` overrides the canonical site URL, including any project subdirectory. It defaults to GitHub Pages so the existing Vercel copy also identifies Pages as the primary website. Canonical tags, sharing metadata, and sitemap use the same URL. Project-site robots.txt is included, although crawlers read robots.txt at the hostname root. Keep `.vercel/` and local credentials out of Git.
