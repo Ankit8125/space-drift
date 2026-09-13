@@ -25,16 +25,16 @@ export function scheduleStudyPhrase(ctx,destination,index,start){
     });
     let ended=0;for(const oscillator of oscillators)oscillator.onended=()=>{oscillator.disconnect();if(++ended===2){envelope.disconnect();pan.disconnect();}};
   }
-  // Soft, low-register felt-key suggestions, separated by generous silence.
+  // Quiet mid-register notes bloom into the pad instead of striking above it.
   for(let note=0;note<2;note++){
     const at=start+12+note*15;
     const oscillator=ctx.createOscillator(),envelope=ctx.createGain(),filter=ctx.createBiquadFilter();
-    oscillator.type='triangle';oscillator.frequency.value=chord[(index+note+1)%4]*2;
+    oscillator.type='triangle';oscillator.frequency.value=chord[(index+note+1)%4];
     filter.type='lowpass';filter.frequency.value=850;filter.Q.value=.3;
-    envelope.gain.setValueAtTime(0,at);envelope.gain.linearRampToValueAtTime(.018,at+.09);
-    envelope.gain.exponentialRampToValueAtTime(.0001,at+5.5);envelope.gain.linearRampToValueAtTime(0,at+7);
+    envelope.gain.setValueAtTime(0,at);envelope.gain.linearRampToValueAtTime(.004,at+1.8);
+    envelope.gain.exponentialRampToValueAtTime(.0001,at+7);envelope.gain.linearRampToValueAtTime(0,at+9);
     oscillator.connect(filter).connect(envelope).connect(destination);
-    oscillator.start(at);oscillator.stop(at+7.1);
+    oscillator.start(at);oscillator.stop(at+9.1);
     oscillator.onended=()=>{oscillator.disconnect();filter.disconnect();envelope.disconnect();};
   }
 }
