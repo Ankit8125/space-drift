@@ -35,8 +35,8 @@ export function createStarfield(THREE,scene,seed){
     fragmentShader:'varying vec3 vColor;void main(){float d=length(gl_PointCoord-.5)*2.;gl_FragColor=vec4(vColor,1.-smoothstep(0.,1.,d));}'});
   scene.add(new THREE.Points(geometry,material));
   const nearCount=340,near=new Float32Array(nearCount*3),origins=[];
-  for(let i=0;i<nearCount;i++){origins.push({x:(rng()-.5)*600,y:(rng()-.5)*400,z:rng()*1400});}
+  for(let i=0;i<nearCount;i++){origins.push([rng()*1000,rng()*1000,rng()*1000]);}
   const nearGeo=new THREE.BufferGeometry();nearGeo.setAttribute('position',new THREE.BufferAttribute(near,3));
   const dust=new THREE.Points(nearGeo,new THREE.PointsMaterial({color:0xa4c6e8,size:.32,transparent:true,opacity:.65,depthWrite:false}));scene.add(dust);
-  return {update(distance,ratio,route){material.uniforms.uRatio.value=ratio;for(let i=0;i<nearCount;i++){const p=origins[i];near.set([p.x-route.x,p.y-route.y,((p.z+distance)%1400)-1300],i*3);}nearGeo.attributes.position.needsUpdate=true;},count:count+nearCount};
+  return {update(position,ratio){material.uniforms.uRatio.value=ratio;for(let i=0;i<nearCount;i++){const p=origins[i];for(let axis=0;axis<3;axis++)near[i*3+axis]=((p[axis]-position[axis]+500)%1000+1000)%1000-500;}nearGeo.attributes.position.needsUpdate=true;},count:count+nearCount};
 }
