@@ -16,18 +16,16 @@ This version uses Three.js's WebGL renderer and GLSL shaders. The original uses 
 
 ## Experience
 
-- Press **Begin your journey** to cruise, or choose **Take control** to explore a persistent 3D universe in any direction. Turn around and revisit the same worlds.
-- The universe contains 44 celestial encounter types. The original 62-minute corridor remains along the departure axis, with additional seeded worlds in every direction. Your route determines what you encounter.
-- Autopilot slowly changes camera angles. Manual flight uses a stable chase camera that follows the ship through complete loops and rolls; **C** switches to a pilot view.
-- **WASD / arrows** turn, climb, and dive. **Q / E** roll; **Shift** boosts and **X** brakes while held. Release steering to keep your new heading. Set the speed slider to zero to turn in place.
+- Press **Begin your journey** and settle in. The rocket always cruises on autopilot at a steady **1×** pace through a persistent 3D universe.
+- The universe contains 44 celestial encounter types, with seeded worlds in every direction.
+- The rocket makes gentle turns and automatic detours around solid bodies. Camera angles change slowly every few minutes.
 - A beatless study soundtrack blends slow chords with sparse felt-key notes. Full volume has approximately 24 dB more gain than the original quiet mix, with a compressor controlling peaks. New sessions default to a gentle 28% volume; existing choices remain saved.
-- Drag and hold on the canvas to steer with mouse or touch. Touch devices also have a steering pad and roll buttons. Scroll to zoom the chase camera. **P** resumes autopilot from the current position and heading, without teleporting.
 - **Space** pauses both motion and audio. **M** mutes; the slider controls volume.
 - **H** hides or restores controls. **Escape** also restores them. **F** toggles fullscreen when supported.
 - Controls dim on idle. Keyboard focus brings them back.
 - Reduced-motion settings start the journey paused; play explicitly to animate.
 - Hidden tabs stop rendering and suspend audio.
-- Sound settings, world seed, position, orientation, flight mode, and speed are saved locally. Add `?seed=123` to open a reproducible fresh universe.
+- Sound settings, world seed, position, orientation, and journey progress are saved locally. Add `?seed=123` to open a reproducible fresh universe.
 
 ## Project layout
 
@@ -54,7 +52,7 @@ fly-with-me-space/
 
 The engine in `src/space.js` assembles reusable builders from `library/index.js`. Flight behavior and rendering remain in the engine; object geometry lives in the library. `src/noise.js` contains shared procedural noise, and `src/audio.js` synthesizes the sound.
 
-`src/flight.js` integrates quaternion steering and world position; `src/universe.js` addresses deterministic 3D sectors. `src/scenery.js` selects the nearest 10 encounter groups and retains at most 20 during fades, disposing distant geometry and materials. Returning to a sector regenerates the same world. GPU coordinates stay relative to the rocket. Solid bodies have surface boundaries and the chase camera shortens near them.
+`src/flight.js` integrates automatic quaternion turns and world position; `src/universe.js` addresses deterministic 3D sectors. `src/scenery.js` selects the nearest 10 encounter groups and retains at most 20 during fades, disposing distant geometry and materials. Returning to a sector regenerates the same world. GPU coordinates stay relative to the rocket. Solid bodies have surface boundaries and the chase camera shortens near them.
 
 The visuals cover major observed object classes, not every astronomical subtype or a complete database of discovered objects. Sizes, spacing, colors of high-energy emission, and travel times are artistic interpretations. See [the celestial reference](docs/celestial-reference.md) for sources and limitations.
 

@@ -9,8 +9,8 @@ export function createSpace(canvas,seed,savedTime=0,savedFlight){
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'low-power'});
   renderer.setClearColor(0x070e1c);renderer.outputColorSpace=THREE.SRGBColorSpace;
   const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(48,1,.1,2400);
-  let width=1,height=1,time=savedTime,journey=0,cockpit=false,rendered=false;
-  const zoom={target:16,current:16},flight=createFlight(savedTime,savedFlight);
+  let width=1,height=1,time=savedTime,journey=0,rendered=false;
+  const flight=createFlight(savedTime,savedFlight);
   const stars=createStarfield(THREE,scene,seed),scenery=createScenery(THREE,scene,seed);
   const {rocket,plume}=vehicles.rocket(THREE);
   const anchor=new THREE.Group();anchor.add(rocket);scene.add(anchor);
@@ -31,15 +31,14 @@ export function createSpace(canvas,seed,savedTime=0,savedFlight){
     flight.step(dt,obstacles);time+=dt;
     const position=flight.position;
     journey=THREE.MathUtils.damp(journey,started?1:0,.5,dt);
-    zoom.current=THREE.MathUtils.damp(zoom.current,zoom.target,3,dt);
     anchor.quaternion.fromArray(flight.orientation);
     // Keep the ship at the render origin; translate the persistent world around it.
-    anchor.position.set(0,0,0);anchor.visible=!cockpit;
+    anchor.position.set(0,0,0);anchor.visible=true;
     viewRotation.copy(anchor.quaternion);
-    const pose=flight.mode==='cruise'?cameraPose(time):[0,3.2,18];
-    targetOffset.set(pose[0]*(width<700?.62:1)-(1-journey),pose[1],pose[2]*zoom.current/16+(width<700?4:0));
+    const pose=cameraPose(time);
+    targetOffset.set(pose[0]*(width<700?.62:1)-(1-journey),pose[1],pose[2]+(width<700?4:0));
     cameraOffset.lerp(targetOffset,rendered?1-Math.exp(-dt*2):1);
-    if(cockpit){desired.set(0,.4,-5);look.set(0,.4,-50);}else{desired.copy(cameraOffset);look.set(0,.6,-32);}
+    desired.copy(cameraOffset);look.set(0,.6,-32);
     desired.applyQuaternion(viewRotation);look.applyQuaternion(viewRotation);
     // Shorten the chase boom if a solid world lies between it and the ship.
     const boomLength=desired.length(),direction=boomDirection.copy(desired).normalize();
@@ -58,9 +57,8 @@ export function createSpace(canvas,seed,savedTime=0,savedFlight){
   }
   resize();render();
   return {
-    resize,render,zoom,flight,
-    toggleView(){cockpit=!cockpit;return cockpit;},
+    resize,render,flight,
     get time(){return time;},get encounter(){return scenery.current();},
-    get stats(){return {drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,stars:stars.count,activeEncounters:scenery.count,encounters:scenery.ids,objects:scenery.locations,leg:Math.floor(time/LEG_SECONDS),distance:flight.distance,camera:camera.position.toArray(),forward:flight.forward,course:flight.position,orientation:flight.orientation,mode:flight.mode,speed:flight.speed,throttle:flight.throttle,blocked:flight.blocked,cockpit};}
+    get stats(){return {drawCalls:renderer.info.render.calls,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,stars:stars.count,activeEncounters:scenery.count,encounters:scenery.ids,objects:scenery.locations,leg:Math.floor(time/LEG_SECONDS),distance:flight.distance,camera:camera.position.toArray(),forward:flight.forward,course:flight.position,orientation:flight.orientation,mode:flight.mode,speed:flight.speed,throttle:flight.throttle,blocked:flight.blocked};}
   };
 }

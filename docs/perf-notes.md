@@ -1,10 +1,10 @@
 # Rendering budgets
 
-## Free 3D flight
+## Automatic 3D journey
 
 The current engine loads by spatial distance rather than forward route time. It queries deterministic sectors around the ship, selects the closest 10 groups, and caps incoming/outgoing groups at 20 during fades. The query runs at most every 0.45 simulation seconds unless travel exceeds 30 units. Loaded bodies keep fixed world coordinates; all GPU transforms subtract the ship position. Local star particles wrap on all three axes.
 
-Steering uses normalized quaternions with bounded integration steps. Pitch and roll are unrestricted. Solid primary bodies, moons, and binary companions have surface boundaries; rings and diffuse clouds remain traversable. The chase camera shortens its boom before a solid surface. The engine exposes mode, position, orientation, speed, and object coordinates through read-only diagnostics.
+Autopilot uses normalized quaternions with bounded integration steps, a fixed 1× cruise speed, and gentle lookahead detours around solid bodies. Old manual-flight saves preserve position and heading but always resume at 1× on autopilot. Solid primary bodies, moons, and binary companions have surface boundaries; rings and diffuse clouds remain traversable. The chase camera shortens its boom before a solid surface. The engine exposes mode, position, orientation, speed, and object coordinates through read-only diagnostics.
 
 The older measurements below describe the original route renderer, not the current spatial renderer.
 

@@ -38,6 +38,10 @@ assert.ok(sitemap.includes(`<loc>${siteBase}/</loc>`));
 assert.ok(sitemap.includes(`<loc>${siteBase}/about/</loc>`));
 assert.ok((await readFile('dist/robots.txt','utf8')).includes(`Sitemap: ${siteBase}/sitemap.xml`));
 const script=home.match(/<script type="module">([\s\S]*?)<\/script>/)[1];
+// Catch stale UI bindings after controls are removed from the page.
+for(const [,id] of script.matchAll(/\$\('([^']+)'\)/g)){
+  assert.ok(home.includes(`id="${id}"`),`UI binding needs an existing element: ${id}`);
+}
 const syntax=spawnSync(process.execPath,['--input-type=module','--check'],{input:script,encoding:'utf8'});
 assert.equal(syntax.status,0,syntax.stderr);
 console.log('Site checks passed: bundled JavaScript, crawlable pages, metadata, canonical URLs, local links, social image, structured data, robots and sitemap.');

@@ -33,7 +33,7 @@
   </head>
   <body>
     <main id="experience">
-      <canvas id="space" tabindex="0" aria-label="A freely explorable 3D universe. Hold WASD or arrow keys to steer, Q and E to roll, or drag and hold to turn." aria-describedby="flight-instructions"></canvas>
+      <canvas id="space" tabindex="0" aria-label="An endless 3D space journey on gentle autopilot."></canvas>
       <div class="vignette" aria-hidden="true"></div>
       <header class="chrome">
         <a class="brand" href="./" aria-label="Space Drift home"><svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="5.5" transform="rotate(-40 16 16)"/><circle cx="16" cy="16" r="8"/><circle class="brand-star" cx="27" cy="6" r="2"/></svg><span>space drift</span><span class="brand-caption">A LITTLE SPACE FOR YOURSELF</span></a>
@@ -43,17 +43,6 @@
         <h1 id="title">Give your mind<br>a little space.</h1>
         <button id="begin" class="begin-button" disabled><span id="begin-label">Preparing your universe</span><span aria-hidden="true">→</span></button>
       </section>
-      <div id="flight-caption" aria-hidden="true"><span>YOU CAN JUST BE HERE.</span></div>
-      <section id="flight-deck" class="flight-deck chrome" aria-label="Flight controls" hidden>
-        <div class="flight-actions"><button id="pilot" class="flight-button" title="Toggle autopilot (P)">Take control</button><button id="camera-view" class="flight-button" title="Change camera (C)">Pilot view</button></div>
-        <p id="flight-feedback">Autopilot · settle in and drift</p>
-        <p id="flight-instructions">WASD / arrows to steer · Q / E to roll<br>Drag and hold to turn · Shift to boost · X to brake</p>
-        <label class="speed-control" for="speed"><span>Speed</span><input id="speed" type="range" min="0" max="300" step="10" value="100" aria-label="Flight speed" /><output id="speed-value" for="speed">1.0×</output></label>
-      </section>
-      <div id="touch-flight" aria-label="Touch flight controls">
-        <button id="steering-pad" aria-label="Drag and hold to steer" title="Drag and hold to steer"><span class="pad-cross" aria-hidden="true">+</span><span id="steering-stick" aria-hidden="true"></span></button>
-        <div class="roll-controls"><button id="roll-left" class="flight-button" aria-label="Roll left">↶</button><button id="roll-right" class="flight-button" aria-label="Roll right">↷</button></div>
-      </div>
       <footer class="chrome">
         <div class="location"><span class="live-dot"></span><span><span id="region-name">PLANETARY SHORES</span><small id="region-detail">Ocean world</small></span></div>
         <div id="controls" class="controls" hidden>
@@ -72,9 +61,9 @@
       <dialog id="about">
         <button id="about-close" class="quiet-button close" aria-label="Close about">×</button>
         <p class="eyebrow">WELCOME ABOARD</p><h2>A little room to breathe.</h2>
-        <p>Space Drift is a quiet companion for working, reading, or exploring. Cruise on autopilot, or take control and fly in any direction through an endless 3D universe. Turn around to revisit the worlds behind you.</p>
-        <dl><dt>WASD / arrows</dt><dd>Turn left/right, climb/dive</dd><dt>Drag and hold</dt><dd>Steer with mouse or touch</dd><dt>Q / E</dt><dd>Roll left/right</dd><dt>Shift / X</dt><dd>Boost / brake while held</dd><dt>P / C</dt><dd>Autopilot / pilot camera</dd><dt>Scroll</dt><dd>Zoom the chase camera</dd><dt>Space</dt><dd>Pause flight and sound</dd><dt>M / H / F</dt><dd>Mute / hide controls / fullscreen</dd></dl>
-        <p class="about-footnote">Release steering to keep flying on your new heading. Set speed to zero to look around in place. Autopilot resumes from your current location; it never teleports you back. Its camera changes gently every few minutes. Solid worlds have a surface boundary so you can fly around them.</p>
+        <p>Space Drift is a quiet companion for working, reading, or exploring. Your rocket drifts through an endless 3D universe on autopilot at a steady 1× pace. Settle in and enjoy the view.</p>
+        <dl><dt>Space</dt><dd>Pause flight and sound</dd><dt>M</dt><dd>Mute sound</dd><dt>H</dt><dd>Hide or restore controls</dd><dt>F</dt><dd>Fullscreen</dd></dl>
+        <p class="about-footnote">The camera changes gently every few minutes. Controls fade when idle, leaving room for the stars and your thoughts.</p>
         <p class="about-footnote">Inspired by real astronomy. Distances, sizes, and travel times are compressed; high-energy emissions are interpreted as visible light. Sound is a cabin ambience. This is a cinematic journey, not a physical simulation.</p>
         <p class="about-footnote">Created in your browser. No accounts or tracking. Inspired by Kun Chen’s <a href="https://github.com/kunchenguid/fly-with-me" target="_blank" rel="noopener noreferrer">Fly With Me</a>.</p>
         <p class="about-footnote"><a href="./about/">Read about the journey, music, and controls</a></p>
