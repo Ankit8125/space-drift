@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071018" />
+    <title>Space Drift Object Catalog</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="importmap">
+      { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js" } }
+    </script>
+  </head>
+  <body>
+    <main class="catalog-shell">
+      <header class="catalog-header">
+        <div>
+          <p class="kicker">SPACE DRIFT / FIELD GUIDE</p>
+          <h1>Everything out there.</h1>
+          <p class="intro">A single-page look at every celestial object in the journey. No waiting, no route to complete.</p>
+        </div>
+        <div class="count" aria-live="polite"><strong id="visible-count">44</strong><span>objects<br />catalogued</span></div>
+      </header>
+      <nav class="filters" aria-label="Filter objects">
+        <button class="filter active" data-family="all">All objects</button>
+        <button class="filter" data-family="planet">Planets</button>
+        <button class="filter" data-family="star">Stars</button>
+        <button class="filter" data-family="compact">Stellar remnants</button>
+        <button class="filter" data-family="cloud">Nebulae</button>
+        <button class="filter" data-family="galaxy">Galaxies</button>
+        <button class="filter" data-family="blackhole">Black holes</button>
+        <button class="filter" data-family="field">Small bodies</button>
+      </nav>
+      <section id="catalog" class="catalog-grid" aria-label="Celestial objects"></section>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
