@@ -1,0 +1,7 @@
+{
+  "name": "space-drift",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "node tools/serve.mjs", "build": "node tools/bundle.mjs && node tests/site-checks.mjs", "preview": "node tools/serve.mjs dist", "check": "node tools/check.mjs && node tests/journey-checks.mjs" }
+}

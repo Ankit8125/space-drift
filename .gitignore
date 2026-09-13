@@ -1,0 +1,11 @@
+node_modules/
+dist/
+output/
+.playwright-cli/
+.vercel/
+.env
+.env.*
+!.env.example
+*.log
+
+.vercel

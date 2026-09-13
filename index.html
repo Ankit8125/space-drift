@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080e1b" />
+    <meta name="description" content="Focus, study, or unwind with Space Drift: a free endless space journey with ambient music, a flying rocket, planets, stars, nebulae, and galaxies. No sign-up." />
+    <title>Space Drift — Relaxing Space Music for Study &amp; Focus</title>
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://space-drift-focus.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Space Drift" />
+    <meta property="og:title" content="Space Drift — A Little Space to Focus" />
+    <meta property="og:description" content="An endless rocket journey through the universe, with ambient study music. Free, calming, and made for focus." />
+    <meta property="og:url" content="https://space-drift-focus.vercel.app/" />
+    <meta property="og:image" content="https://space-drift-focus.vercel.app/assets/social-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Space Drift: relaxing space ambience for study and focus, illustrated with a rocket and a ringed planet." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Space Drift — Relaxing Space Music for Study &amp; Focus" />
+    <meta name="twitter:description" content="A little rocket, an endless universe, and ambient music to help you settle into your work." />
+    <meta name="twitter:image" content="https://space-drift-focus.vercel.app/assets/social-card.png" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"WebApplication","name":"Space Drift","url":"https://space-drift-focus.vercel.app/","description":"Free ambient space music and an endless procedural rocket journey for studying, focus, reading, and relaxation.","applicationCategory":"EntertainmentApplication","operatingSystem":"Any modern browser with WebGL and Web Audio","isAccessibleForFree":true,"inLanguage":"en","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"image":"https://space-drift-focus.vercel.app/assets/social-card.png"}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <script type="importmap">
+      { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js" } }
+    </script>
+  </head>
+  <body>
+    <main id="experience">
+      <canvas id="space" tabindex="0" aria-label="An endless space journey. Drag to look around; use arrow keys to guide your rocket." ></canvas>
+      <div class="vignette" aria-hidden="true"></div>
+      <header class="chrome">
+        <a class="brand" href="./" aria-label="Space Drift home"><svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="5.5" transform="rotate(-40 16 16)"/><circle cx="16" cy="16" r="8"/><circle class="brand-star" cx="27" cy="6" r="2"/></svg><span>space drift</span><span class="brand-caption">A LITTLE SPACE FOR YOURSELF</span></a>
+        <button id="about-open" class="quiet-button" aria-label="About Space Drift">?</button>
+      </header>
+      <section id="intro" aria-labelledby="title">
+        <p class="eyebrow">SPACE AMBIENCE FOR STUDY &amp; FOCUS</p>
+        <h1 id="title">Give your mind<br>a little space.</h1>
+        <p class="intro-copy">Free ambient music. An endless space journey.<br>Settle into studying, reading, or simply being.</p>
+        <button id="begin" class="begin-button" disabled><span id="begin-label">Preparing your universe</span><span aria-hidden="true">↗</span></button>
+        <p class="sound-hint"><span aria-hidden="true">♫</span> Best enjoyed with headphones</p>
+        <a class="learn-link" href="./about/">About Space Drift &amp; how to use it <span aria-hidden="true">↗</span></a>
+      </section>
+      <div id="flight-caption" aria-hidden="true"><span>YOU CAN JUST BE HERE.</span></div>
+      <footer class="chrome">
+        <div class="location"><span class="live-dot"></span><span><span id="region-name">PLANETARY SHORES</span><small id="region-detail">Ocean world</small></span></div>
+        <div id="controls" class="controls" hidden>
+          <button id="pause" class="icon-button" aria-label="Pause journey" title="Pause journey (Space)"></button>
+          <span class="divider"></span>
+          <button id="sound" class="icon-button" aria-label="Mute sound" title="Mute sound (M)"></button>
+          <input id="volume" type="range" min="0" max="100" value="28" aria-label="Sound volume" />
+          <span class="divider"></span>
+          <button id="focus" class="icon-button" aria-label="Hide controls" title="Hide controls (H)"></button>
+          <button id="fullscreen" class="icon-button" aria-label="Enter fullscreen" title="Fullscreen (F)"></button>
+        </div>
+        <span class="footer-note" id="footer-note">A small escape into the infinite <span>✧</span></span>
+      </footer>
+      <button id="restore" class="quiet-button" hidden aria-label="Show controls">Show controls <span>H</span></button>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <dialog id="about">
+        <button id="about-close" class="quiet-button close" aria-label="Close about">×</button>
+        <p class="eyebrow">WELCOME ABOARD</p><h2>A little room to breathe.</h2>
+        <p>Space Drift is a free quiet companion for working, reading, or doing absolutely nothing. Your rocket flies on its own. There is no destination to reach.</p>
+        <dl><dt>Drag / arrow keys</dt><dd>Gently guide your view</dd><dt>Scroll</dt><dd>Move closer or further away</dd><dt>Space</dt><dd>Pause the journey and sound</dd><dt>M / H / F</dt><dd>Mute / hide controls / fullscreen</dd></dl>
+        <p class="about-footnote">An hour-long opening route, followed by endless new passages. The camera gently changes its view every few minutes. Dragging gives you the view back.</p>
+        <p class="about-footnote">Inspired by real astronomy. Distances, sizes, and travel times are compressed; high-energy emissions are interpreted as visible light. Sound is a cabin ambience. This is a cinematic journey, not a physical simulation.</p>
+        <p class="about-footnote">Created in your browser. No accounts or tracking. Inspired by Kun Chen’s <a href="https://github.com/kunchenguid/fly-with-me" target="_blank" rel="noopener noreferrer">Fly With Me</a>.</p>
+        <p class="about-footnote"><a href="./about/">Read about the journey, music, and controls</a></p>
+      </dialog>
+    </main>
+    <noscript><p class="no-script">Space Drift is a free space ambience experience with music for studying and focus. Enable JavaScript to start the rocket journey, or <a href="./about/">read about Space Drift</a>.</p></noscript>
+    <script type="module">
+      import('./src/main.js').catch(error => {
+        console.error(error);
+        document.getElementById('status').textContent = 'The universe could not load. Check your internet connection and reload.';
+        document.getElementById('begin-label').textContent = 'Unable to connect';
+      });
+    </script>
+  </body>
+</html>
