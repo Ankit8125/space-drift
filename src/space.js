@@ -6,7 +6,7 @@ import {cameraPose,flightPath,FLIGHT_SPEED,LEG_SECONDS} from './journey.js';
 
 export function createSpace(canvas,seed,savedTime=0){
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'low-power'});
-  renderer.setClearColor(0x02040a);
+  renderer.setClearColor(0x070e1c);
   renderer.outputColorSpace=THREE.SRGBColorSpace;
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(48,1,.1,2400);
@@ -17,9 +17,10 @@ export function createSpace(canvas,seed,savedTime=0){
   const {rocket,plume}=vehicles.rocket(THREE);
   const anchor=new THREE.Group();anchor.add(rocket);scene.add(anchor);
   rocket.rotation.set(-Math.PI/2,0,0);rocket.scale.setScalar(.92);
-  scene.add(new THREE.HemisphereLight(0xb5d4ed,0x0a101a,.65));
-  const sunlight=new THREE.DirectionalLight(0xffefd5,3.2);sunlight.position.set(-80,45,100);scene.add(sunlight);
-  const fill=new THREE.DirectionalLight(0x668cbb,.8);fill.position.set(35,-10,-20);scene.add(fill);
+  scene.add(new THREE.HemisphereLight(0xc2e2ff,0x152233,1.1));
+  const sunlight=new THREE.DirectionalLight(0xfff4e2,3.6);sunlight.position.set(-80,45,100);scene.add(sunlight);
+  const fill=new THREE.DirectionalLight(0x7ba4d6,1.4);fill.position.set(40,-10,-20);scene.add(fill);
+  const backRim=new THREE.DirectionalLight(0x8bb6ff,1.0);backRim.position.set(0,30,-120);scene.add(backRim);
   const desired=new THREE.Vector3(),look=new THREE.Vector3();
   const forwardAxis=new THREE.Vector3(0,0,-1),heading=new THREE.Vector3(),roll=new THREE.Quaternion();
   let rendered=false;

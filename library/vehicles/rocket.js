@@ -49,6 +49,7 @@ export function buildRocket(THREE){
     }
     rocket.add(engine);
   }
-  const engineLight=new THREE.PointLight(0x82baff,.5,3);engineLight.position.y=-1.85;rocket.add(engineLight);
+  const engineLight=new THREE.PointLight(0x8bc0ff,1.6,4.5);engineLight.position.y=-1.85;rocket.add(engineLight);
+  const hullLight=new THREE.PointLight(0xb2d6ff,.9,3.5);hullLight.position.set(0,.3,1.2);rocket.add(hullLight);
   return {rocket,plume};
 }

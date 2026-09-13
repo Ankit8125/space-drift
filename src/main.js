@@ -15,7 +15,7 @@ const audio=createAudio(),reducedMotion=matchMedia('(prefers-reduced-motion: red
 let world;
 function notify(message){clearTimeout(statusTimer);$('status').textContent=message;statusTimer=setTimeout(()=>$('status').textContent='',4500);}
 function save(){if(!world||reviewMode)return;try{localStorage.setItem('drift-v1',JSON.stringify({seed,volume,muted,time:world.time}));}catch{}}
-function soundUI(){icon('sound',muted||volume===0?'muted':'sound');$('sound').setAttribute('aria-label',muted?'Unmute sound':'Mute sound');$('sound').setAttribute('aria-pressed',String(muted));$('volume').value=String(Math.round(volume*100));audio.setVolume(muted?0:volume);}
+function soundUI(){icon('sound',muted||volume===0?'muted':'sound');$('sound').setAttribute('aria-label',muted?'Unmute sound':'Mute sound');$('sound').setAttribute('aria-pressed',String(muted));const v=muted?0:Math.round(volume*100);$('volume').value=String(v);$('volume').style.setProperty('--vol',`${v}%`);audio.setVolume(muted?0:volume);}
 function pauseUI(){icon('pause',paused?'play':'pause');$('pause').setAttribute('aria-label',paused?'Resume journey':'Pause journey');$('pause').title=paused?'Resume journey (Space)':'Pause journey (Space)';document.body.classList.toggle('paused',paused);}
 let shownLeg=-1;
 function updateLocation(){if(!world)return;const encounter=world.encounter;if(encounter.index===shownLeg)return;shownLeg=encounter.index;$('region-name').textContent=encounter.chapter.toUpperCase();$('region-detail').textContent=encounter.name;}
