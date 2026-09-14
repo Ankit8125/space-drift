@@ -12,4 +12,4 @@ The look is a dark navy universe with a ceramic rocket, cool planetary light, an
 
 Aim for astronomical visual cues: atmospheric limb light, textured surfaces, dark planetary nights, stellar granulation, diffuse gas, dense stellar populations, and an opaque black-hole shadow. The journey deliberately compresses real cosmic scales and translates otherwise invisible emissions into an illustrative visible palette. It must not claim to be a physical simulation or an exhaustive astronomical catalogue.
 
-Long sessions matter. Geometry stays bounded, hidden tabs stop rendering and suspend audio, and reduced-motion preferences start flight paused. Added complexity should earn its cost through a calmer or more convincing experience.
+Long sessions matter. Geometry stays bounded, hidden tabs stop rendering while music continues, and reduced-motion preferences start flight paused. Added complexity should earn its cost through a calmer or more convincing experience.
