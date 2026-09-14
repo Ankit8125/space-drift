@@ -25,6 +25,7 @@ async function sync(){
   if(started&&!paused){
     if(!document.hidden){last=performance.now();raf=requestAnimationFrame(frame);}
     await audio.start();audio.setVolume(muted?0:volume);
+    if(paused)await audio.suspend();
   }else await audio.suspend();
 }
 function wake(){document.body.classList.remove('idle');clearTimeout(idleTimer);if(started)idleTimer=setTimeout(()=>document.body.classList.add('idle'),4500);}
