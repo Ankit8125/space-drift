@@ -25,7 +25,7 @@ This version uses Three.js's WebGL renderer and GLSL shaders. The original uses 
 - **H** hides or restores controls. **Escape** also restores them. **F** toggles fullscreen when supported.
 - Controls dim on idle. Keyboard focus brings them back.
 - Reduced-motion settings start the journey paused; play explicitly to animate.
-- Hidden tabs stop rendering and suspend audio.
+- Music continues when you switch tabs; hidden tabs stop rendering to save graphics work.
 - Sound settings, world seed, position, orientation, and journey progress are saved locally. Add `?seed=123` to open a reproducible fresh universe.
 
 ## Project layout

@@ -20,7 +20,13 @@ function pauseUI(){icon('pause',paused?'play':'pause');$('pause').setAttribute('
 let shownLeg=-1;
 function updateLocation(){if(!world)return;const encounter=world.encounter;if(!encounter||encounter.key===shownLeg)return;shownLeg=encounter.key;$('region-name').textContent=encounter.chapter.toUpperCase();$('region-detail').textContent=encounter.name;}
 function frame(now){raf=0;if(!started||paused||document.hidden)return;if(now-last>=1000/30){const dt=Math.min((now-last)/1000,.1);last=now;world.render(dt,true);updateLocation();}raf=requestAnimationFrame(frame);}
-async function sync(){cancelAnimationFrame(raf);raf=0;if(started&&!paused&&!document.hidden){last=performance.now();raf=requestAnimationFrame(frame);await audio.start();audio.setVolume(muted?0:volume);if(paused||document.hidden)await audio.suspend();}else await audio.suspend();}
+async function sync(){
+  cancelAnimationFrame(raf);raf=0;
+  if(started&&!paused){
+    if(!document.hidden){last=performance.now();raf=requestAnimationFrame(frame);}
+    await audio.start();audio.setVolume(muted?0:volume);
+  }else await audio.suspend();
+}
 function wake(){document.body.classList.remove('idle');clearTimeout(idleTimer);if(started)idleTimer=setTimeout(()=>document.body.classList.add('idle'),4500);}
 function togglePause(){if(!started)return;releaseDrag();paused=!paused;pauseUI();sync();save();notify(paused?'Journey paused. Take your time.':'Drifting again.');wake();}
 function toggleSound(){muted=!muted;soundUI();save();wake();}

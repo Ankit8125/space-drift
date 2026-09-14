@@ -22,7 +22,7 @@ The later rocket refinement adds fixed hull details and a three-engine cluster: 
 
 The animation loop targets at most 30 rendered frames per second. The drawing buffer is capped at approximately 2.1 million pixels and 1.5 device pixels per CSS pixel. Three.js uses the WebGL renderer with a low-power preference; that preference is a browser hint, not a guarantee.
 
-The initial view renders once. Pause and hidden tabs stop the animation loop and suspend audio. Camera smoothing, star travel, and material animation use the same simulation clock.
+The initial view renders once. Pause stops the animation loop and suspends audio. Hidden tabs stop only the animation loop; music keeps playing through an HTML media element, with phrases scheduled 180 seconds ahead to tolerate background timer throttling. Camera smoothing, star travel, and material animation use the same simulation clock.
 
 These are code-level limits, not measured frame-time or battery-life claims. Use `window.__drift.state` in browser developer tools to inspect current draw calls, geometry count, star count, and playback state when profiling.
 
